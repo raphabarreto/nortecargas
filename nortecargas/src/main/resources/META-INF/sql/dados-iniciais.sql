@@ -1,0 +1,7 @@
+insert into Cliente (id, razaoSocial, nome, email, telefone, telefone2) values (1, 'Mercado do João', 'João Assis', 'joao@mercado.com.br', '(21) 3654-6687', '(21) 9871-5645');
+insert into Cliente (id, razaoSocial, nome, email, telefone, telefone2) values (2, 'Falei Mais', 'Maria Aparecida', 'maria@falemais.com.br', '(11) 9725-0002', '(11) 8541-2144');
+insert into Cliente (id, razaoSocial, nome, email, telefone, telefone2) values (3, 'Construtora Andrade', 'Maurício Gomes Souza', 'msouza@andrade.net.br', '(81) 3571-3577', '(81) 6545-9712');
+insert into Cliente (id, razaoSocial, nome, email, telefone, telefone2) values (4, 'Shopping Roldão', 'Izaias Medeiros da Costa', 'costa@roldao.com.br', '(11) 3744-9874', '(11) 6542-5626');
+insert into Cliente (id, razaoSocial, nome, email, telefone, telefone2) values (5, 'Papelaria Tommy', 'Aparecido da Silva', 'asilva@tommy.com', '(16) 5554-5557', '(16) 5641-5555');
+insert into Cliente (id, razaoSocial, nome, email, telefone, telefone2) values (6, 'Açougue da Vila', 'Gustavo Rochedo Fonseca', 'gurofo@vila.com.br', '(23) 4444-4444', '(23) 4654-5656');
+insert into Cliente (id, razaoSocial, nome, email, telefone, telefone2) values (7, 'Sapataria Kichute', 'Rodrigo Ferro', 'ferro@kichute.com', '(16) 9999-5407', '(16) 6556-6488');

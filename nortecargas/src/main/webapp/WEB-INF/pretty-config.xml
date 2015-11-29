@@ -1,0 +1,26 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+	<url-mapping id="home">
+		<pattern value="/home" />
+		<view-id value="/faces/listaClientes.xhtml?active=lista" />
+	</url-mapping>
+
+	<url-mapping id="home">
+		<pattern value="/home" />
+		<view-id value="/faces/listaClientes.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="incluir">
+		<pattern value="/incluir" />
+		<view-id value="/faces/incluirCliente.xhtml?active=incluir" />
+	</url-mapping>
+
+	<url-mapping id="editar">
+		<pattern value="/#{id}" />
+		<view-id value="/faces/editarCliente.xhtml" />
+	</url-mapping>
+
+</pretty-config>

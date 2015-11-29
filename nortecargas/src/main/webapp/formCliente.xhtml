@@ -1,0 +1,108 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form styleClass="form-horizontal">
+		<fieldset>
+			<legend>
+				<h3>
+					<h:outputText value="#{msg['label.cliente']}" />
+					<small> <h:outputText value="#{subtitle}" /></small>
+				</h3>
+			</legend>
+			<div class="control-group">
+				<label class="control-label"><h:outputText
+						value="#{msg['label.cliente.nome']}" /></label>
+				<div class="controls">
+					<h:inputText value="#{clienteMB.cliente.razaoSocial}"
+						label="#{msg['label.cliente.nome']}" required="true"
+						styleClass="input-largezz" style="width:250px">
+						<f:validateLength minimum="5" maximum="60" />
+					</h:inputText>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label"><h:outputText
+						value="#{msg['label.cliente.pessoa']}" /></label>
+				<div class="controls">
+					<h:inputText value="#{clienteMB.cliente.nome}"
+						label="#{msg['label.cliente.pessoa']}" required="true"
+						styleClass="input-large" style="width:250px">
+						<f:validateLength minimum="5" maximum="100" />
+					</h:inputText>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label"><h:outputText
+						value="#{msg['label.cliente.email']}" /></label>
+				<div class="controls">
+					<h:inputText value="#{clienteMB.cliente.email}"
+						label="#{msg['label.cliente.email']}" required="true"
+						styleClass="input-small" style="width:250px"
+						validatorMessage="#{msg['label.email.erro']}">
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</h:inputText>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label"><h:outputText
+						value="#{msg['label.cliente.telefone']}" /></label>
+				<div class="controls">
+					<p:inputMask value="#{clienteMB.cliente.telefone}"
+						label="#{msg['label.cliente.telefone']}" required="true"
+						styleClass="input-small" style="width:250px" mask="(99) 9999-9999" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label"><h:outputText
+						value="#{msg['label.cliente.telefone2']}" /></label>
+				<div class="controls">
+					<p:inputMask value="#{clienteMB.cliente.telefone2}"
+						label="#{msg['label.cliente.telefone2']}" required="false"
+						styleClass="input-small" style="width:250px" mask="(99) 9999-9999" />
+				</div>
+			</div>
+		</fieldset>
+
+		<div class="control-group">
+			<div class="controls">
+				<p:commandButton value="#{msg['button.salvar']}"
+					action="#{clienteMB.salvar}" styleClass="btn btn-success"
+					onclick="dlg.show();" oncomplete="dlg.hide();"
+					rendered="#{clienteMB.cliente != null}" />
+				<p:button value="#{msg['button.cancelar']}" outcome="listaClientes"
+					styleClass="btn" />
+				<p:commandButton value="#{msg['button.excluir']}"
+					onclick="PF('confirmation').show()"
+					rendered="#{clienteMB.cliente.id != null}" immediate="true"
+					styleClass="btn btn-danger" />
+			</div>
+		</div>
+
+		<p:dialog id="dialog" header="#{msg['dialog.emexecucao.titulo']}"
+			widgetVar="dlg" dynamic="true" modal="true">
+			<h:outputText value="#{msg['dialog.emexecucao.aguarde']}" />
+		</p:dialog>
+
+		<p:confirmDialog id="confirmDialog"
+			message="#{msg['excluir.cliente.confirma']}"
+			header="#{msg['excluir.cliente']}" severity="alert"
+			widgetVar="confirmation">
+			<p:commandButton id="confirm" value="#{msg['confirma.sim']}"
+				update="messages" oncomplete="confirmation.hide()"
+				action="#{clienteMB.remover}" />
+			<p:commandButton id="decline" value="#{msg['confirma.nao']}"
+				onclick="PF('confirmation').hide()" type="button" />
+		</p:confirmDialog>
+
+		<p:messages id="messages" showDetail="false" autoUpdate="true"
+			closable="true" />
+	</h:form>
+</ui:fragment>

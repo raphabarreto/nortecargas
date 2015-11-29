@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="pageTitle">
+		<h:outputText value="#{msg['page.title.lista.cliente']}" />
+	</ui:define>
+
+	<ui:define name="content">
+		<div style="border-bottom: 1px solid #E5E5E5;">
+			<h3>
+				<h:outputText value="#{msg['label.clientes']}" />
+				<small> <h:outputText value="#{msg['label.listagem']}" /></small>
+			</h3>
+		</div>
+		<h:form>
+			<p:dataTable id="dataTable" var="cliente"
+				value="#{clienteMB.clientes}" paginator="true" rows="5"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" widgetVar="tabelaclientes"
+				filteredValue="#{clienteMB.clientes}" emptyMessage="#{msg['pesquisa.erro']}">
+
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Pesquisar: " />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('tabelaclientes').filter()" style="width:150px" />
+					</p:outputPanel>
+				</f:facet>
+
+
+				<p:column filterBy="#{cliente.razaoSocial}" sortBy="#{cliente.razaoSocial}" filterStyle="display:none"
+				style="width:150px;">
+					<f:facet name="header">
+						<h:outputText value="#{msg['label.cliente.nome']}" />
+					</f:facet>
+					<h:link outcome="editarCliente" value="#{cliente.razaoSocial}"
+						title="#{msg['label.editar']} #{cliente.razaoSocial}">
+						<f:param name="id" value="#{cliente.id}" />
+					</h:link>
+				</p:column>
+
+				<p:column filterBy="#{cliente.nome}" filterStyle="display:none" sortBy="#{cliente.nome}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['label.cliente.pessoa']}" />
+					</f:facet>
+					<h:outputText value="#{cliente.nome}" />
+				</p:column>
+
+				<p:column filterBy="#{cliente.email}" filterStyle="display:none" sortBy="#{cliente.email}"
+				style="text-align:center; width:180px;">
+					<f:facet name="header">
+						<h:outputText value="#{msg['label.cliente.email']}" />
+					</f:facet>
+					<h:outputText value="#{cliente.email}" />
+				</p:column>
+
+				<p:column filterBy="#{cliente.telefone}" filterStyle="display:none" sortBy="#{cliente.telefone}"
+				style="width:110px;">
+					<f:facet name="header">
+						<h:outputText value="#{msg['label.cliente.telefone']}" />
+					</f:facet>
+					<h:outputText value="#{cliente.telefone}" />
+				</p:column>
+				</p:dataTable>
+			<h:panelGrid columns="2">
+					<h:commandLink>
+						<h:outputText value="#{msg['menu.exportar']}" escape="false" />
+						<p:dataExporter type="pdf" target="dataTable" fileName="clientes"
+							pageOnly="true" encoding="iso-8859-1" preProcessor="#{clienteMB.preProcessPDF}"/>
+				</h:commandLink>				
+			</h:panelGrid>
+		</h:form>
+		<h:messages />
+	</ui:define>
+</ui:composition>
+</html>
